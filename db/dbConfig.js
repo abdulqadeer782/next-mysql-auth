@@ -1,11 +1,13 @@
 const mysql = require('mysql2/promise');
 
+require('dotenv').config();
+
 const config = {
-    host: process.env.MYSQL_HOST || '127.0.0.1', // Fallback to localhost if env var not defined
-    port: process.env.MYSQL_PORT || 3306, // Fallback to standard port if env var not defined
-    database: process.env.MYSQL_DATABASE || 'next-mysql', // Fallback to default database name
-    user: process.env.MYSQL_USER || 'root', // Fallback to root user if env var not defined
-    password: process.env.MYSQL_PASSWORD || '', // Use empty string for development (not recommended for production)
+    host: process.env.MYSQL_HOST,
+    port: process.env.MYSQL_PORT,
+    database: process.env.MYSQL_DATABASE,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD
 };
 
 const pool = mysql.createPool(config);

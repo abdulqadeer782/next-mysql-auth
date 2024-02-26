@@ -1,9 +1,7 @@
-"use client"
 import React from 'react';
 import Link from 'next/link';
 
 function HeaderComponent() {
-    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
 
 
     function deleteAllCookies() {
@@ -27,28 +25,20 @@ function HeaderComponent() {
                         </span>
                     </Link>
                     <div className="flex items-center lg:order-2">
-                        {!isLoggedIn ? (
-                            <>
-                                <Link
-                                    className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                                    href="/sign-in"
-                                >
-                                    Sign In
-                                </Link>
-                                <Link
-                                    className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                                    href="/sign-up"
-                                >
-                                    Sign Up
-                                </Link>
-                            </>
-                        ) : (
-                            <button onClick={() => {
-                                sessionStorage.clear();
-                                deleteAllCookies();
-                                window.location.reload();
-                            }}>Logout</button>
-                        )}
+
+                        <Link
+                            className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                            href="/sign-in"
+                        >
+                            Sign In
+                        </Link>
+                        <Link
+                            className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                            href="/sign-up"
+                        >
+                            Sign Up
+                        </Link>
+
                     </div>
                 </div>
             </nav>

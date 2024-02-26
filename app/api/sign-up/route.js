@@ -22,22 +22,19 @@ export async function POST(req) {
         if (userId) {
             // Send a verification email
             const transporter = nodemailer.createTransport({
-                host: "203.130.2.136",
-                port: 25,
+                host: process.env.SERVERHOST,
+                port: process.env.SERVERPORT,
                 auth: {
                     user: process.env.SERVERMAILER,
                     pass: process.env.SERVERPASSWORD,
                 },
             });
 
-            const emailContent = `<p>Click the following link to verify your email:</p>
-                <a href="http://localhost:9999/email-verification?email=${email}" target="_blank">Verify Email</a>`;
-
             const mailData = {
                 from: 'nadir_ali@gmail.com', // Update with a valid email address
                 to: email,
                 subject: `New User Signup: ${name}`,
-                html: emailContent,
+                html: `You email verification code is ${verificationCode}`,
             };
 
             await transporter.sendMail(mailData);

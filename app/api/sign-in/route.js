@@ -18,14 +18,14 @@ export async function POST(req) {
         const passwordMatch = await bcrypt.compare(password, user.password);
 
         if (!passwordMatch) {
-            return NextResponse.json({ message: 'Incorrect password' });
+            return NextResponse.json({ message: 'Incorrect password' }, { status: 422 });
         }
 
         // Create a JWT token
         const token = jwt.sign({ userId: user.id, emai: email }, 'secret', { expiresIn: '1h' });
         return NextResponse.json({
             message: 'User signed in successfully',
-            userId: user.id, token: token, email_verified: user.email_verified, email: email
+            userId: user.id, token: token, email_verified: user.email_verified, email: email, name: user.name
         }, {
             status: 200
         });
